@@ -10,4 +10,4 @@ def main_layout():
 
 def extended_layout(i):
     grapher.graph(i)
-    return [[sg.Image("graph.png")]]
+    return [[sg.Image("graph.png", key='img')]]
