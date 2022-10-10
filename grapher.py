@@ -1,11 +1,12 @@
 import matplotlib.pyplot as plt
-import numpy as np
+import numpy
 
 
 def graph(i):
-    x = np.linspace(-5, 5, 1000)
-    y = list()
+    x = numpy.linspace(-5, 5, 1000)
     y = eval(i)
+    if not type(x) == type(y) or not len(x) == len(y):
+        y = [y for i in range(len(x))]
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
     ax.spines['left'].set_position('center')

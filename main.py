@@ -1,13 +1,14 @@
 import PySimpleGUI as sg
-import layouts
 
+import grapher
+import layouts
 
 window = sg.Window("Quizzers", layouts.main_layout())
 
 QUESTIONS = 5
 
+increased = False
 name = ""
-
 while True:
     event, values = window.read()
     if event == sg.WIN_CLOSED or event == "Exit":
@@ -15,11 +16,13 @@ while True:
         break
     elif event == 'Calculate':
         i = values[0]
-        '''
-        new_input = i.split()
-        new_input_ints = list(map(int, new_input))
-        '''
-        window.extend_layout(window, layouts.extended_layout(i))
+        if not increased:
+            window.extend_layout(window, layouts.extended_layout(i))
+            increased = True
+        else:
+            grapher.graph(i)
+            window['img'].update('graph.png')
+            window.refresh()
 
 
 window.close()
