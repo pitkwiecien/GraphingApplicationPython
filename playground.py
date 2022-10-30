@@ -1,0 +1,1 @@
+y=eval(input())
