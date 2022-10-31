@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import builtins
 import math
 from random import randint
 
@@ -11,8 +12,13 @@ def graph(points, bounds, domain, imports, func):
     if len(imports) > 0:
         for name in imports:
             elems = name.split(".")
-            element = getattr(globals()[elems[0]], elems[1])
-            globals()[elems[1]] = np.vectorize(element) if callable(element) else element
+            print(elems)
+            if len(elems) == 1:
+                if len(elems[0]) > 0:
+                    globals()["b_"+elems[0]] = np.vectorize(getattr(builtins, elems[0]))
+            else:
+                element = getattr(globals()[elems[0]], elems[1])
+                globals()[elems[1]] = np.vectorize(element) if callable(element) else element
     for i in range(len(func_list)):
         func_list[i] = func_list[i].strip()
     y = []

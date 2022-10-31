@@ -3,23 +3,28 @@ import PySimpleGUI as sg
 import grapher
 import layouts
 
-window = sg.Window("Grapher", layouts.main_layout())
+window = sg.Window("Grapher", layouts.main_layout(), finalize=True)
+
+window['func_input'].bind("<Return>", "_Enter")
 
 QUESTIONS = 5
 
 increased = False
 name = ""
+
 while True:
     event, values = window.read()
+    print(event)
+    print(values)
     if event == sg.WIN_CLOSED or event == "Exit":
         print("EXIT")
         break
-    elif event == 'Calculate':
+    elif event == 'Calculate' or event == "func_input_Enter":
         points = int(values[0])
         bounds = float(values[1])
         domain = values[2]
         imports = values[3].split(",") if values[3] != '' else []
-        func = values[4]
+        func = values["func_input"]
 
         for i in range(len(imports)):
             imports[i] = imports[i].strip()
