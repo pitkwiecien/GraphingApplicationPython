@@ -50,6 +50,9 @@ def graph(points, bounds, domain, imports, func):
     ax.xaxis.set_label_coords(1, 0.55)
     ax.set_ylabel("y", rotation="horizontal")
     ax.yaxis.set_label_coords(0.525, 1)
+    y_ticks = ax.get_yticks()
+    y_ticks = y_ticks[y_ticks != 0.0]
+    ax.set_yticks(y_ticks)
     plt.savefig("graph.png")
 
 
