@@ -3,7 +3,7 @@ import PySimpleGUI as sg
 import grapher
 import layouts
 
-window = sg.Window("Quizzers", layouts.main_layout())
+window = sg.Window("Grapher", layouts.main_layout())
 
 QUESTIONS = 5
 
