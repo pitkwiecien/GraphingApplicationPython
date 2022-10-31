@@ -15,12 +15,14 @@ while True:
         print("EXIT")
         break
     elif event == 'Calculate':
-        i = values[0]
+        points = int(values[0])
+        bounds = float(values[1])
+        func = values[2]
         if not increased:
-            window.extend_layout(window, layouts.extended_layout(i))
+            window.extend_layout(window, layouts.extended_layout(points, bounds, func))
             increased = True
         else:
-            grapher.graph(i)
+            grapher.graph(points, bounds, func)
             window['img'].update('graph.png')
             window.refresh()
 
